@@ -2,10 +2,10 @@ package com;
 
 import org.apache.log4j.Logger;
 
-import com.handler.TestHandler;
 import com.cg.HttpServerCg;
 import com.cg.SimpleCommandExecutorCg;
-import com.zank.zcf.server.HttpServer;
+import com.handler.LoginHandler;
+import com.handler.TestHandler;
 
 /**
  * BootstrapServer
@@ -31,6 +31,7 @@ public class BootstrapServer {
 		SimpleCommandExecutorCg httpExecutor = new SimpleCommandExecutorCg();
 		// 注册handler
 		httpExecutor.registerRegexHandler("test", new TestHandler());
+		httpExecutor.registerRegexHandler("login", new LoginHandler());
 		// 启动一个HTTP服务器，默认是netty
 //		try{
 //		new HttpServer( config.getHttpServerPort(), httpExecutor).stop();
