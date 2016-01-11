@@ -15,7 +15,7 @@ public class InitListener implements ServletContextListener {
     @Override  
     public void contextInitialized(ServletContextEvent context) {  
     	BootstrapServer.startHttp();
-        System.out.println("================>[ServletContextListener]自动加载启动开始.");  
+        System.out.println("================自动加载启动开始.");  
     }  
   
 }  

@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.ServerConfig;
 import com.mongodb.ReadPreference;
+import com.util.KeyUtil;
 import com.zank.zcf.dao.mongo.IMongoDao;
 import com.zank.zcf.dao.mongo.factory.MongoDaoFactory;
 
@@ -21,6 +22,7 @@ import com.zank.zcf.dao.mongo.factory.MongoDaoFactory;
 public class LoginServiceImpl {
 	private static Logger logger = Logger.getLogger(TestServiceImpl.class);
 	private final IMongoDao mongoDao;
+	private RedisServiceImpl redisService = new RedisServiceImpl();
 
 	private ServerConfig config = ServerConfig.getServerConfig();
 	static List<String> fields=new ArrayList<String>();//只返回需要的字段
@@ -83,5 +85,30 @@ public class LoginServiceImpl {
 		cond.put("username", username);
 		mongoDao.delete(cond);
 		return true;
+	}
+	/**
+	 * 延迟token生命周期
+	 */
+	public void setTokenToRedis(String username,String pwd,String token){
+		redisService.setRedisValue(KeyUtil.TOKEN_KEY+username, token, KeyUtil.TOKEN_EXPIRE);
+		redisService.hset(KeyUtil.USER_INFO_KEY+token,"username", username,KeyUtil.TOKEN_EXPIRE);
+		redisService.hset(KeyUtil.USER_INFO_KEY+token, "pwd",pwd,KeyUtil.TOKEN_EXPIRE);
+		redisService.hset(KeyUtil.USER_INFO_KEY+token, "token",token,KeyUtil.TOKEN_EXPIRE);
+	}
+	/**
+	 * 获取用户的token
+	 * @return token
+	 */
+	public Object getTokenToRedis(String username){
+		Object token=redisService.getRedisObj(KeyUtil.TOKEN_KEY+username);
+		return token;
+	}
+	/**
+	 * 是否登陆
+	 * @return true登陆了，false未登陆
+	 */
+	public  boolean isLogin(String token){
+		String username=redisService.hget(KeyUtil.USER_INFO_KEY+token, "username");
+		return username!=null?true:false;
 	}
 }

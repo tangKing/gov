@@ -19,7 +19,6 @@ import com.util.ToolUtil;
  */
 public class LoginHandler extends MultiCommandHandlerCg {
 	private static Logger logger = Logger.getLogger(TestHandler.class);
-	private RedisServiceImpl redisService = new RedisServiceImpl();
 	private  LoginServiceImpl loginService = new LoginServiceImpl();
 
 	/**
@@ -33,13 +32,13 @@ public class LoginHandler extends MultiCommandHandlerCg {
 			Map<String, Object> one=loginService.getOne(username,pwd);
 			String token="";
 			if(one!=null&&!one.isEmpty()){
-				Object redisToken=getTokenToRedis(username);
+				Object redisToken=loginService.getTokenToRedis(username);
 				if(redisToken!=null){//延迟token的生命周期
 					token=redisToken.toString();
-					setTokenToRedis(username, pwd,token);
+					loginService.setTokenToRedis(username, pwd,token);
 				}else{//token已经失效则生成新的token
 					token=ToolUtil.getToken();
-					setTokenToRedis(username, pwd,token);
+					loginService.setTokenToRedis(username, pwd,token);
 				}
 			}else{
 				code="201";
@@ -80,21 +79,5 @@ public class LoginHandler extends MultiCommandHandlerCg {
 			ex.printStackTrace();
 		}
 	}
-	/**
-	 * 延迟token生命周期
-	 */
-	public void setTokenToRedis(String username,String pwd,String token){
-		redisService.setRedisValue(KeyUtil.USER_TOKEN_KEY+username, token, KeyUtil.TOKEN_EXPIRE);
-		redisService.hset(KeyUtil.USER_INFO_KEY+token,"username", username,KeyUtil.TOKEN_EXPIRE);
-		redisService.hset(KeyUtil.USER_INFO_KEY+token, "pwd",pwd,KeyUtil.TOKEN_EXPIRE);
-		redisService.hset(KeyUtil.USER_INFO_KEY+token, "token",token,KeyUtil.TOKEN_EXPIRE);
-	}
-	/**
-	 * 获取用户的token
-	 * @return token
-	 */
-	public Object getTokenToRedis(String username){
-		Object token=redisService.getRedisObj(KeyUtil.USER_TOKEN_KEY+username);
-		return token;
-	}
+
 }

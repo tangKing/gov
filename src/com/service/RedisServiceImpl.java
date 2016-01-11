@@ -30,16 +30,14 @@ public class RedisServiceImpl  {
 		return true;
 	}
 
-	public Object getRedisObj(String key) {
-		Object obj = null;
+	public String getRedisObj(String key) {
 		try {
-			obj = redisDao.get(key);
+			return  redisDao.get(key);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("---getRedisObj--key:" + key + ",exception" + e);
 			return null;
 		}
-		return obj;
 	}
 	
 	

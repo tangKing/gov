@@ -31,6 +31,7 @@ import org.jboss.netty.handler.codec.http.HttpResponseStatus;
 import org.jboss.netty.util.CharsetUtil;
 
 import com.alibaba.fastjson.JSON;
+import com.service.LoginServiceImpl;
 import com.zank.zcf.command.McfConst;
 import com.zank.zcf.handler.MonitorHandler;
 import com.zank.zcf.monitor.ZMonitor;
@@ -47,6 +48,7 @@ public class HttpServerCg extends AbstractNettyServer {
 
     private static final Logger LOG = Logger.getLogger(HttpServerCg.class);
 	private ICommandExecutorCg commandExecutor;
+	private  LoginServiceImpl loginService = new LoginServiceImpl();
 
     public HttpServerCg(String host, int port, ICommandExecutorCg commandExecutor) {
         super(host, port);
@@ -145,28 +147,34 @@ public class HttpServerCg extends AbstractNettyServer {
 				}
 
                 HttpResponseStatus status = HttpResponseStatus.OK;
-
-				if (cmd != null) {
-					ResponseCg resp = null;
-					if (!"true".equalsIgnoreCase(cmd.getStringParam(McfConst.PARAM_COMMAND_ASYNC))) { //sync (default)
-						resp = commandExecutor.executeWithResponse(cmd);
-					} else { // async
-						boolean success = commandExecutor.execute(cmd);
-						resp = new ResponseCg().addValue(McfConst.PARAM_SUCCESS, success);
-					}
+            	
+            	 if (cmd != null) {
+					String  token = cmd.getStringParam("token");
 					String  callback = cmd.getStringParam("callback");
-					if(callback!=null){
-//						String rs="data"+resp.getStringValue("result");
-//						String code=resp.getStringValue("code");
-//						String callbackResult=callback + "(["+rs+"]);";
-						String callbackResult=callback + "("+ JsonUtils.toJSON(resp.getResponse())+");";
+					boolean isLogin=loginService.isLogin(token);
+					String method=cmd.getMethod();
+					System.out.println("isLogin-----token："+token+",isLogin:"+isLogin+",method:"+method);
+					if(method.equals("login")&&method.equals("regedit")&&!isLogin){//未登陆了
+						String callbackResult=callback + "({\"code\":\"400\"});";
 						write(output,callbackResult);
 					}else{
-						write(output, JsonUtils.toJSON(resp.getResponse()));
+						ResponseCg resp = null;
+						if (!"true".equalsIgnoreCase(cmd.getStringParam(McfConst.PARAM_COMMAND_ASYNC))) { //sync (default)
+							resp = commandExecutor.executeWithResponse(cmd);
+						} else { // async
+							boolean success = commandExecutor.execute(cmd);
+							resp = new ResponseCg().addValue(McfConst.PARAM_SUCCESS, success);
+						}
+						if(callback!=null){
+							 String callbackResult=callback + "("+ JsonUtils.toJSON(resp.getResponse())+");";
+							write(output,callbackResult);
+						}else{
+							write(output, JsonUtils.toJSON(resp.getResponse()));
+						}
+	                    if (!MonitorHandler.flag.get() && StringUtils.equalsIgnoreCase("monitor", cmd.getAction())) {
+	                        status = HttpResponseStatus.NOT_FOUND;
+	                    }
 					}
-                    if (!MonitorHandler.flag.get() && StringUtils.equalsIgnoreCase("monitor", cmd.getAction())) {
-                        status = HttpResponseStatus.NOT_FOUND;
-                    }
 				}
 
                 handleResponse(chanel, output, status);
