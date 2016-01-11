@@ -6,7 +6,7 @@ function getOne(id) {//token必须传递，否则会被认为没有登陆
 			        document.getElementById("result").innerHTML = json.result.id;
 			 }else{
 				 alert("token失效，请先登陆");
-			 }
+			 } 
       });
 	}
 function add(id) {//token必须传递，否则会被认为没有登陆
