@@ -5,7 +5,6 @@
 <%@ page contentType="text/html;charset=utf8"%>
 <title>login</title>
 <script type="text/javascript" src="/gov/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="/gov/js/login.js"></script>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" /> 
 <script type="text/javascript">
 </script>
@@ -36,5 +35,7 @@ request.getSession().setAttribute("token",token);
 	     <input type="button" onclick="regdit()"  value="注册">
 	</div>
 </body>
+<script type="text/javascript" src="/gov/js/common.js"></script>
+<script type="text/javascript" src="/gov/js/login.js"></script>
 </html>
 </span>
