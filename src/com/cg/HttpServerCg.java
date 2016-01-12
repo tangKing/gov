@@ -32,6 +32,7 @@ import org.jboss.netty.util.CharsetUtil;
 
 import com.alibaba.fastjson.JSON;
 import com.service.LoginServiceImpl;
+import com.util.KeyUtil;
 import com.zank.zcf.command.McfConst;
 import com.zank.zcf.handler.MonitorHandler;
 import com.zank.zcf.monitor.ZMonitor;
@@ -154,8 +155,8 @@ public class HttpServerCg extends AbstractNettyServer {
 					boolean isLogin=loginService.isLogin(token);
 					String method=cmd.getMethod();
 					System.out.println("isLogin-----token："+token+",isLogin:"+isLogin+",method:"+method);
-					if(method.equals("login")&&method.equals("regedit")&&!isLogin){//未登陆了
-						String callbackResult=callback + "({\"code\":\"400\"});";
+					if(!method.equals("login")&!method.equals("regedit")&&!isLogin){//未登陆了
+						String callbackResult=callback + "({\"code\":"+KeyUtil.CODE_NOT_LOGIN+"});";
 						write(output,callbackResult);
 					}else{
 						ResponseCg resp = null;
