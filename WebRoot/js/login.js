@@ -1,7 +1,7 @@
 function login() {//登陆
 	var username= $("#username").val();
 	 var pwd=   $("#pwd").val();
-	   $.getJSON(server_domain+"m=login&username="+username+"&pwd="+pwd", function(json){ 
+	   $.getJSON(server_login_domain+"m=login&username="+username+"&pwd="+pwd, function(json){ 
         var code = json.code;
         if(code!=200){
         alert("用户名或密码错误");
@@ -16,11 +16,9 @@ function login() {//登陆
 function regdit() {//注册
 	var username= $("#regusername").val();
 	 var pwd=   $("#regpwd").val();
-	   $.getJSON(server_domain+"m=regdit&username="+username+"&pwd="+pwd", function(json){ 
+	   $.getJSON(server_login_domain+"m=regdit&username="+username+"&pwd="+pwd, function(json){ 
 	  var code = json.code;
 	    if(code==200){
-	       //var token = json.token;
-         //  $("#token").attr("value",token);
 	         var msg = json.msg;
 	         alert(msg);
         }else{

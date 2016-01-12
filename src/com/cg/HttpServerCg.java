@@ -155,7 +155,7 @@ public class HttpServerCg extends AbstractNettyServer {
 					boolean isLogin=loginService.isLogin(token);
 					String method=cmd.getMethod();
 					System.out.println("isLogin-----token："+token+",isLogin:"+isLogin+",method:"+method);
-					if(!method.equals("login")&!method.equals("regedit")&&!isLogin){//未登陆了
+					if(!method.equals("login")&!method.equals("regdit")&&!isLogin){//未登陆了
 						String callbackResult=callback + "({\"code\":"+KeyUtil.CODE_NOT_LOGIN+"});";
 						write(output,callbackResult);
 					}else{
