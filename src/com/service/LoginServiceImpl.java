@@ -34,7 +34,16 @@ public class LoginServiceImpl {
 	/**
 	 * 查询单条数据
 	 */
-	public Map<String, Object> getOne(String username, String pwd) throws Exception {
+	public Map<String, Object> getOne(String username) throws Exception {
+		Map<String, Object> cond = new HashMap<String, Object>();
+		cond.put("username", username);
+		Map<String, Object> result = mongoDao.findOne(cond,fields);
+		return result;
+	}
+	/**
+	 * 查询单条数据
+	 */
+	public Map<String, Object> getOne(String username,String pwd) throws Exception {
 		Map<String, Object> cond = new HashMap<String, Object>();
 		cond.put("username", username);
 		cond.put("pwd", pwd);

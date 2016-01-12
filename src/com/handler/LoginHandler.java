@@ -18,7 +18,7 @@ import com.util.ToolUtil;
  * @author tangyong
  */
 public class LoginHandler extends MultiCommandHandlerCg {
-	private static Logger logger = Logger.getLogger(TestHandler.class);
+	private static Logger logger = Logger.getLogger(LoginHandler.class);
 	private  LoginServiceImpl loginService = new LoginServiceImpl();
 
 	/**
@@ -58,7 +58,7 @@ public class LoginHandler extends MultiCommandHandlerCg {
 		try {
 			final String username = cmd.getStringParam("username");
 			final String pwd = cmd.getStringParam("pwd");
-			Map<String, Object> one=loginService.getOne(username,pwd);
+			Map<String, Object> one=loginService.getOne(username);
 			int code=KeyUtil.CODE_SUCCESS;
 			String msg="注册成功";
 			ResponseCg response = new ResponseCg();
