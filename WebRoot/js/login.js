@@ -13,7 +13,7 @@ function login() {//登陆
         }
       });
 	}
-function regdit() {//注册
+function regdit() {//注册 
 	var username= $("#regusername").val();
 	 var pwd=   $("#regpwd").val();
 	   $.getJSON(server_login_domain+"m=regdit&username="+username+"&pwd="+pwd, function(json){ 

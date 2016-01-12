@@ -7,7 +7,7 @@
 <script type="text/javascript" src="/gov/js/jquery-1.8.3.min.js"></script>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 </head>
-<body>
+<body> 
    <input type="text" id="token" value="${token }">
 	<div id="tb">
 	      ID:<div id="result"></div>
@@ -17,7 +17,7 @@
 <script type="text/javascript" src="/gov/js/common.js"></script>
 <script type="text/javascript" src="/gov/js/test.js"></script>
 <script type="text/javascript">     
-//	add(20);
+ 	add(20);
     getOne(20);
 </script>   
 </html>
