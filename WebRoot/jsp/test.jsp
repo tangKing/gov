@@ -12,7 +12,7 @@
 	<div id="tb">
 	      ID:<div id="result"></div>
 	</div> 
-</body>
+</body> 
 <!-- 所有的自己编写的js都放在最下面引入，不能放在上面。否则取不到token -->
 <script type="text/javascript" src="/gov/js/common.js"></script>
 <script type="text/javascript" src="/gov/js/test.js"></script>
