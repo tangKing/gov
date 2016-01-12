@@ -10,7 +10,7 @@ import com.zank.zcf.handler.IHandler;
 import com.zank.zcf.util.LogUtils;
 
 /**
- * @author LiuYan
+ * @author tangyong
  */
 public class SimpleCommandExecutorCg extends AbstractCommandExecutorCg {
 

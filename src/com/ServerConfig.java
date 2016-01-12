@@ -10,7 +10,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
 /**
- * @author yan.liu
+ *  @author tangyong
  *
  */
 public class ServerConfig {

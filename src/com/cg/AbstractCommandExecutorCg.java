@@ -19,7 +19,7 @@ import com.zank.zcf.util.RegexUtils;
 import com.zank.zcf.util.counter.McfCounterManager;
 
 /**
- * @author LiuYan
+ * @author tangyong
  */
 public abstract class AbstractCommandExecutorCg  implements ICommandExecutorCg{
 

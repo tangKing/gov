@@ -28,7 +28,7 @@ public class LoginHandler extends MultiCommandHandlerCg {
 		try {
 			final String username = cmd.getStringParam("username");
 			final String pwd = cmd.getStringParam("pwd");
-			String code="200";
+			int code=KeyUtil.CODE_SUCCESS;
 			Map<String, Object> one=loginService.getOne(username,pwd);
 			String token="";
 			if(one!=null&&!one.isEmpty()){
@@ -41,7 +41,7 @@ public class LoginHandler extends MultiCommandHandlerCg {
 					loginService.setTokenToRedis(username, pwd,token);
 				}
 			}else{
-				code="201";
+				code=KeyUtil.CODE_USERNAME_PWD_ERROR;
 			}
 			ResponseCg response = new ResponseCg();
 			response.addValue("code", code);
@@ -59,12 +59,12 @@ public class LoginHandler extends MultiCommandHandlerCg {
 			final String username = cmd.getStringParam("username");
 			final String pwd = cmd.getStringParam("pwd");
 			Map<String, Object> one=loginService.getOne(username,pwd);
-			String code="200";
+			int code=KeyUtil.CODE_SUCCESS;
 			String token="";
 			String msg="注册成功";
 			ResponseCg response = new ResponseCg();
 			if(one!=null&&!one.isEmpty()){
-				code="201";
+				code=KeyUtil.CODE_USERNAME_EXITX;
 				msg="用户名已经存在,请换一个";
 			}else{
 				loginService.add(username, pwd);		

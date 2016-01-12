@@ -42,7 +42,7 @@ import com.zank.zcf.util.ParamUtils;
 import com.zank.zcf.util.StringUtils;
 
 /**
- * @author LiuYan
+ * @author tangyong
  */
 public class HttpServerCg extends AbstractNettyServer {
 
@@ -79,7 +79,7 @@ public class HttpServerCg extends AbstractNettyServer {
 	private class HttpCommandCgHandler extends SimpleChannelUpstreamHandler {
 		
 		protected CommandCg doGet(HttpRequest request, ChannelBuffer output) {
-			String uri = request.getUri(); // abc.com/admin/print?name=LiuYan&age=1 -> uri: /print?name=LiuYan&age=1
+			String uri = request.getUri(); // abc.com/admin/print?name=tangyong&age=1 -> uri: /print?name=tangyong&age=1
 //            try {
 //                uri = URLDecoder.decode(uri, "gbk");
 //            } catch (UnsupportedEncodingException e) {

@@ -3,7 +3,7 @@ package com.util;
 import java.util.UUID;
 /**
  * 工具类
- *
+ * @author tangyong
  */
 public class ToolUtil {
 	/**

@@ -15,7 +15,7 @@ import com.zank.zcf.dao.mongo.IMongoDao;
 import com.zank.zcf.dao.mongo.factory.MongoDaoFactory;
 
 /**
- * 反垃圾服务类
+ * 登陆服务类
  * 
  * @author tangyong
  */

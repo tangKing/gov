@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSON;
 import com.service.TestServiceImpl;
+import com.util.KeyUtil;
 import com.cg.CommandCg;
 import com.cg.MultiCommandHandlerCg;
 import com.cg.ResponseCg;
@@ -32,7 +33,7 @@ public class TestHandler extends MultiCommandHandlerCg {
 			logger.info("---add-----param---cmd:" + cmd);
 			testService.add(id);
 			ResponseCg response = new ResponseCg();
-			response.addValue("code", "200");
+			response.addValue("code", KeyUtil.CODE_SUCCESS);
 			response.addValue("msg", "添加成功");
 			cmd.setResponseCg(response);
 		} catch (Exception ex) {
@@ -49,7 +50,7 @@ public class TestHandler extends MultiCommandHandlerCg {
 			logger.info("---del-----param---cmd:" + cmd);
 			testService.del(id);
 			ResponseCg response = new ResponseCg();
-			response.addValue("code", "200");
+			response.addValue("code", KeyUtil.CODE_SUCCESS);
 			response.addValue("msg", "删除成功");
 			cmd.setResponseCg(response);
 		} catch (Exception ex) {
@@ -67,7 +68,7 @@ public class TestHandler extends MultiCommandHandlerCg {
 			logger.info("---del-----param---cmd:" + cmd);
 			testService.update(id, newId);
 			ResponseCg response = new ResponseCg();
-			response.addValue("code", "200");
+			response.addValue("code", KeyUtil.CODE_SUCCESS);
 			response.addValue("msg", "修改成功");
 			cmd.setResponseCg(response);
 		} catch (Exception ex) {
@@ -83,7 +84,7 @@ public class TestHandler extends MultiCommandHandlerCg {
 			logger.info("---getOne-----param---cmd:" + cmd);
 			Map<String, Object> result = testService.getOne(id);
 			ResponseCg response = new ResponseCg();
-			response.addValue("code", "200");
+			response.addValue("code", KeyUtil.CODE_SUCCESS);
 			response.addValue("result",result);
 			response.addValue("msg", "获取成功");
 			cmd.setResponseCg(response);
@@ -102,7 +103,7 @@ public class TestHandler extends MultiCommandHandlerCg {
 			logger.info("---queryAll-----param---cmd:" + cmd);
 			List<Map<String, Object>> result = testService.queryAll(id, page==0?1:page, pageSize);
 			ResponseCg response = new ResponseCg();
-			response.addValue("code", "200");
+			response.addValue("code", KeyUtil.CODE_SUCCESS);
 			response.addValue("result", result);
 			cmd.setResponseCg(response);
 		} catch (Exception ex) {

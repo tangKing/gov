@@ -7,7 +7,7 @@ import com.zank.zcf.dao.redis.IRedisDao;
 import com.zank.zcf.dao.redis.factory.RedisDaoFactory;
 
 /**
- * 评论服务类
+ * redis服务类
  * 
  * @author tangyong
  * 
