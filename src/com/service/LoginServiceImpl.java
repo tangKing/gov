@@ -29,7 +29,10 @@ public class LoginServiceImpl {
 	public LoginServiceImpl() {
 		fields.add("username");
 		fields.add("pwd");
-		mongoDao = MongoDaoFactory.getMongoDao(config.getMongoHost(), config.getMongoDbName(), "login", ReadPreference.PRIMARY);
+		fields.add("role");
+		fields.add("realname");
+		fields.add("dep_id");
+		mongoDao = MongoDaoFactory.getMongoDao(config.getMongoHost(), config.getMongoDbName(), "t_user", ReadPreference.PRIMARY);
 	}
 	/**
 	 * 查询单条数据
@@ -46,7 +49,7 @@ public class LoginServiceImpl {
 	public Map<String, Object> getOne(String username,String pwd) throws Exception {
 		Map<String, Object> cond = new HashMap<String, Object>();
 		cond.put("username", username);
-		cond.put("pwd", pwd);
+		cond.put("password", pwd);
 		Map<String, Object> result = mongoDao.findOne(cond,fields);
 		return result;
 	}

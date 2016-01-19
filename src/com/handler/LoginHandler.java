@@ -20,7 +20,26 @@ import com.util.ToolUtil;
 public class LoginHandler extends MultiCommandHandlerCg {
 	private static Logger logger = Logger.getLogger(LoginHandler.class);
 	private  LoginServiceImpl loginService = new LoginServiceImpl();
-
+	/**
+	 * 严重token
+	 */
+	public void verificationToken(CommandCg cmd) {
+		try {
+			 
+			String  token = cmd.getStringParam("token");
+			boolean isLogin=loginService.isLogin(token);
+			int code=KeyUtil.CODE_SUCCESS;
+			if(!isLogin){
+				code=KeyUtil.CODE_NOT_LOGIN;
+			}
+			ResponseCg response = new ResponseCg();
+			response.addValue("code", code);
+			response.addValue("token", token);
+			cmd.setResponseCg(response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 	/**
 	 * 登陆
 	 */
@@ -46,6 +65,7 @@ public class LoginHandler extends MultiCommandHandlerCg {
 			ResponseCg response = new ResponseCg();
 			response.addValue("code", code);
 			response.addValue("token", token);
+			response.addValue("user", one);
 			cmd.setResponseCg(response);
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -4,8 +4,14 @@ import org.apache.log4j.Logger;
 
 import com.cg.HttpServerCg;
 import com.cg.SimpleCommandExecutorCg;
+import com.handler.DepartmentHandler;
+import com.handler.DubanCreateHandler;
+import com.handler.DubanHandler;
 import com.handler.LoginHandler;
+import com.handler.ParamHandler;
 import com.handler.TestHandler;
+import com.handler.UserHandler;
+import com.handler.ZhengfuHandler;
 
 /**
  * BootstrapServer
@@ -32,6 +38,13 @@ public class BootstrapServer {
 		// 注册handler
 		httpExecutor.registerRegexHandler("test", new TestHandler());
 		httpExecutor.registerRegexHandler("login", new LoginHandler());
+		httpExecutor.registerRegexHandler("user", new UserHandler());
+		httpExecutor.registerRegexHandler("dept", new DepartmentHandler());
+		httpExecutor.registerRegexHandler("param", new ParamHandler());
+		httpExecutor.registerRegexHandler("duban", new DubanHandler());
+		httpExecutor.registerRegexHandler("zhengfu", new ZhengfuHandler());
+		httpExecutor.registerRegexHandler("dbcreate", new DubanCreateHandler());
+
 		// 启动一个HTTP服务器，默认是netty
 //		try{
 //		new HttpServer( config.getHttpServerPort(), httpExecutor).stop();

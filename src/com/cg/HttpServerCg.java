@@ -6,9 +6,13 @@ import static org.jboss.netty.handler.codec.http.HttpResponseStatus.INTERNAL_SER
 import static org.jboss.netty.handler.codec.http.HttpResponseStatus.OK;
 import static org.jboss.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.channels.ClosedChannelException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
@@ -30,7 +34,6 @@ import org.jboss.netty.handler.codec.http.HttpResponse;
 import org.jboss.netty.handler.codec.http.HttpResponseStatus;
 import org.jboss.netty.util.CharsetUtil;
 
-import com.alibaba.fastjson.JSON;
 import com.service.LoginServiceImpl;
 import com.util.KeyUtil;
 import com.zank.zcf.command.McfConst;
@@ -81,11 +84,11 @@ public class HttpServerCg extends AbstractNettyServer {
 		
 		protected CommandCg doGet(HttpRequest request, ChannelBuffer output) {
 			String uri = request.getUri(); // abc.com/admin/print?name=tangyong&age=1 -> uri: /print?name=tangyong&age=1
-//            try {
-//                uri = URLDecoder.decode(uri, "gbk");
-//            } catch (UnsupportedEncodingException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                uri = URLDecoder.decode(uri, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             int indexOf = uri.indexOf("?");
 			if (indexOf == -1) {
 				indexOf = uri.length();
@@ -114,8 +117,6 @@ public class HttpServerCg extends AbstractNettyServer {
 		
 		protected CommandCg doPost(HttpRequest request, ChannelBuffer output) {
 			String content = new String(request.getContent().array());
-
-            CommandCg cmd = null;
 //            try {
 //                cmd = JsonUtils.toT(content, CommandCg.class);
 //            } catch (Exception e) {
@@ -152,7 +153,7 @@ public class HttpServerCg extends AbstractNettyServer {
             	 if (cmd != null) {
 					String  token = cmd.getStringParam("token");
 					String  callback = cmd.getStringParam("callback");
-					boolean isLogin=loginService.isLogin(token);
+					boolean isLogin=true;//loginService.isLogin(token);
 					String method=cmd.getMethod();
 					System.out.println("isLogin-----token："+token+",isLogin:"+isLogin+",method:"+method);
 					if(!method.equals("login")&!method.equals("regdit")&&!isLogin){//未登陆了
@@ -203,8 +204,8 @@ public class HttpServerCg extends AbstractNettyServer {
 		private void handleResponse(Channel chanel, ChannelBuffer output, HttpResponseStatus status) throws Exception {
 			HttpResponse response = new DefaultHttpResponse(HTTP_1_1, OK);
 			response.setContent(output);
-			response.setHeader("Content-Type", "text/plain; charset=gbk");
-//			response.setHeader("Content-Type", "text/plain; charset=UTF-8");
+//			response.setHeader("Content-Type", "text/plain; charset=gbk");
+			response.setHeader("Content-Type", "text/plain; charset=UTF-8");
 			response.setHeader("Content-Length", response.getContent().writerIndex());
             response.setStatus(status);
             if (chanel.isConnected()) {
