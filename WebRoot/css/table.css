@@ -1,0 +1,125 @@
+body {
+  margin-left: 3px;
+  margin-top: 0px;
+  margin-right: 3px;
+  margin-bottom: 0px;
+}
+.txtInput{
+background:transparent;border:1px solid #ffffff;
+width:98%;
+}
+textarea{
+background:transparent;border:1px solid #ffffff;
+width:96%;
+}
+.STYLE1 {
+  color: #e1e2e3;
+  font-size: 14px;
+}
+.STYLE6 {color: #000000; font-size: 12; }
+.STYLE10 {color: #000000; font-size: 14px; }
+.STYLE19 {
+  color: #344b50;
+  font-size: 14px;
+}
+.STYLE21 {
+  font-size: 14px;
+  color: #3b6375;
+}
+.STYLE22 {
+  font-size: 14px;
+  color: #295568;
+}
+.mod {
+  width: 24.7%;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.mod-icon {
+  padding: 0 5px;
+}
+.mod-right {
+  padding-right: 5px;
+  text-align: right;
+}
+.bd-c {
+  border: 1px solid #ADD2DA;
+  border-top: 0;
+  min-height: 100px;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+a:hover {
+  color: #325178;
+  text-decoration: underline;
+}
+.fr {
+  float: right;
+}
+.fl {
+  float: left;
+}
+ul, ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.list ul li {
+  border-bottom: 1px dashed #ADD2DA;
+  padding: 5px;
+}
+.list ul li:last-child {
+  border-bottom: 0;
+}
+.list ul li .fr {
+  position: relative;
+  top: 3px;
+}
+.list-icon ul li {
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: 7px 5px;
+}
+.list-icon-1 ul li {
+  background-image:url(../images/main/icon1.png);
+}
+.list-icon-2 ul li {
+  background-image:url(../images/main/icon2.png);
+}
+.list-icon-3 ul li {
+  background-image:url(../images/main/icon3.png);
+}
+.list-icon-4 ul li {
+  background-image:url(../images/main/icon4.png);
+}
+.list-icon-5 ul li {
+  background-image:url(../images/main/icon5.png);
+}
+.list-icon-6 ul li {
+  background-image:url(../images/main/icon6.png);
+}
+.list-icon-7 ul li {
+  background-image:url(../images/main/icon7.png);
+}
+
+@media screen and (min-width: 1200px) {
+  .mod {
+    width: 99.7%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .mod {
+    width: 99.7%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .mod {
+    width: 99.7%;
+  }
+}
+table .formTable{width:100%;border-collapse: collapse;z-index:-1}
+table .formTable td{border: 1px  solid #000;height:30px;text-align:center;}
+table .formTable table td{border: 0px  solid #000;height:30px;text-align:center;}

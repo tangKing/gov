@@ -1,6 +1,6 @@
 function login() {//登陆
 	var username= $("#username").val();
-	 var pwd=   $("#pwd").val();
+	 var pwd=   $("#password").val();
 	   $.getJSON(server_login_domain+"m=login&username="+username+"&pwd="+pwd, function(json){ 
         var code = json.code;
         if(code!=200){
@@ -8,8 +8,9 @@ function login() {//登陆
         }else{
         var token = json.token;
          $("#token").attr("value",token);
-         alert("登陆成功");
-         window.location.href = web_domain+'/jsp/login.jsp?token='+token; 
+         var user = json.user;
+         var data = "&username="+user.username+"&password="+user.password+"&dId="+user.dep_id+"&role="+user.role+"&rName="+user.rolename;
+         window.location.href = web_domain+'/main/main.jsp?token='+token+data; 
         }
       });
 	}
