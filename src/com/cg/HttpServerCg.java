@@ -204,8 +204,8 @@ public class HttpServerCg extends AbstractNettyServer {
 		private void handleResponse(Channel chanel, ChannelBuffer output, HttpResponseStatus status) throws Exception {
 			HttpResponse response = new DefaultHttpResponse(HTTP_1_1, OK);
 			response.setContent(output);
-//			response.setHeader("Content-Type", "text/plain; charset=gbk");
-			response.setHeader("Content-Type", "text/plain; charset=UTF-8");
+			response.setHeader("Content-Type", "text/plain; charset=gbk");
+//			response.setHeader("Content-Type", "text/plain; charset=UTF-8");
 			response.setHeader("Content-Length", response.getContent().writerIndex());
             response.setStatus(status);
             if (chanel.isConnected()) {

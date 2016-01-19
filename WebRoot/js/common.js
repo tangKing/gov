@@ -1,5 +1,5 @@
 var token= $("#token").val();
-var web_domain="http://127.0.0.1:8080/test";//tomcat 访问地址
+var web_domain="http://127.0.0.1:8080/gov";//tomcat 访问地址
 var server_test_domain="http://127.0.0.1:7081/test?callback=?&token="+token+"&";//服务端访问地址
 var server_login_domain="http://127.0.0.1:7081/login?callback=?&token="+token+"&";//服务端访问地址
 var server_user_domain="http://127.0.0.1:7081/user?callback=?&token="+token+"&";//服务端访问地址

@@ -33,7 +33,7 @@ request.getSession().setAttribute("realName",rName);
   <frame src="top.jsp" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
   <frameset rows="*" cols="8,147,10,*,8" id="frame">
 	<frame src="temp.jsp" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
-	<frame src="left.jsp" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto">
+	<frame src="left.jsp?role=${role }" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto">
 	<frame src="white.jsp" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
 	<frame src="right.jsp" name="rightFrame" marginwidth="0" marginheight="0" frameborder="0" scrolling="yes">
 	<frame src="temp.jsp" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />

@@ -28,7 +28,7 @@ public class LoginServiceImpl {
 	static List<String> fields=new ArrayList<String>();//只返回需要的字段
 	public LoginServiceImpl() {
 		fields.add("username");
-		fields.add("pwd");
+		fields.add("password");
 		fields.add("role");
 		fields.add("realname");
 		fields.add("dep_id");
@@ -53,7 +53,14 @@ public class LoginServiceImpl {
 		Map<String, Object> result = mongoDao.findOne(cond,fields);
 		return result;
 	}
-
+public static void main(String[] args) {
+	try {
+		System.out.println(new LoginServiceImpl().getOne("admin1","admin1"));
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 	/**
 	 * 查询列表
 	 */
@@ -70,11 +77,21 @@ public class LoginServiceImpl {
 	public boolean add(String username,String pwd) throws Exception {
 		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("username", username);
-		record.put("pwd", pwd);
+		record.put("password", pwd);
 		mongoDao.insert(record);
 		return true;
 	}
-
+	/**
+	 * 添加
+	 */
+	public boolean add(String username,String pwd,int role) throws Exception {
+		Map<String, Object> record = new HashMap<String, Object>();
+		record.put("username", username);
+		record.put("password", pwd);
+		record.put("role", role);
+		mongoDao.insert(record);
+		return true;
+	}
 	/**
 	 * 修改
 	 */
@@ -82,7 +99,7 @@ public class LoginServiceImpl {
 		Map<String, Object> cond = new HashMap<String, Object>();
 		cond.put("username", username);
 		Map<String, Object> record = new HashMap<String, Object>();
-		record.put("pwd", pwd);
+		record.put("password", pwd);
 		// 第一个false代表不插入，如果是true那么就是说如果不存在的话就插入
 		// 第二个false代表修改一条数据即可，如果是true那么就是说修改多条
 		mongoDao.update(cond, record, false, false);
@@ -104,7 +121,7 @@ public class LoginServiceImpl {
 	public void setTokenToRedis(String username,String pwd,String token){
 		redisService.setRedisValue(KeyUtil.TOKEN_KEY+username, token, KeyUtil.TOKEN_EXPIRE);
 		redisService.hset(KeyUtil.USER_INFO_KEY+token,"username", username,KeyUtil.TOKEN_EXPIRE);
-		redisService.hset(KeyUtil.USER_INFO_KEY+token, "pwd",pwd,KeyUtil.TOKEN_EXPIRE);
+		redisService.hset(KeyUtil.USER_INFO_KEY+token, "password",pwd,KeyUtil.TOKEN_EXPIRE);
 		redisService.hset(KeyUtil.USER_INFO_KEY+token, "token",token,KeyUtil.TOKEN_EXPIRE);
 	}
 	/**

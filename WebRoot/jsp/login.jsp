@@ -32,6 +32,7 @@ request.getSession().setAttribute("token",token);
 		<div id="tb">注册
 	     用户名<input id="regusername" value="admin1" type="text">
 	     密码<input id="regpwd" value="admin1" type="text">
+	        role<input id="role" value="1" type="text">
 	     <input type="button" onclick="regdit()"  value="注册">
 	</div>
 	

@@ -1,18 +1,15 @@
 package com.test;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import org.junit.Test;
 
 import com.service.UserServiceImpl;
 import com.util.PageModel;
 
 public class UserTest {
 
-	@Test
+//	@Test
 	public void testAdd(){
 		UserServiceImpl userService = new UserServiceImpl();
 		
@@ -27,7 +24,7 @@ public class UserTest {
 		userService.save(user);
 	}
 	
-	@Test
+//	@Test
 	public void queryAll() throws Exception{
 		UserServiceImpl userService = new UserServiceImpl();
 		

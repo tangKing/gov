@@ -25,6 +25,9 @@ body {
 </style></head>
 <%
 	Object obj = request.getSession().getAttribute("role");
+	if(obj==null){
+		String role = request.getParameter("role");
+	}
 	int role = 0;
 	if(null != obj){
 		role = Integer.parseInt((String)obj);
