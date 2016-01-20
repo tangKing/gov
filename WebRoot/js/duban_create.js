@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	findMk();
-	
 	findDept();
 	
 	showDes();
@@ -9,13 +8,15 @@ function add() {//查询全部部门
 	 //verificationToken($("#token").val());//严重token是否有效，无效则跳转到登录页
 	 /*
 	 *直接将表单提交
-	 **/	 alert("添加成功！!!!");
+	 **/	 alert("添加成功！");
 	var requestUrl=server_duban_create_domain+"m=add";
-	document.form2.action=requestUrl;
-	   document.form2.submit();
-	//$('#form2').ajaxSubmit(function(data) {  
-	//    alert(data);//弹出ajax请求后的回调结果
-	//});
+//	document.form2.action=requestUrl;
+	 $('#form2').attr('action',requestUrl);
+	//   document.form2.submit();
+	// alert(document.form2.action);
+	$('#form2').ajaxSubmit(function(data) {  
+	  //  alert(data);//弹出ajax请求后的回调结果
+	});
 	  
 	   window.location.href = web_domain+'/main/duban_showList.jsp'; 
 }
