@@ -71,6 +71,16 @@ public class ParamServiceImpl {
 		
 		return model;
 	}
+	
+	public List<Map<String, Object>> query(int start, int pageSize,String t) throws Exception{
+		Map<String, Object> order = new HashMap<String, Object>();
+		order.put("order", 1);
+		
+		Map<String,Object> cond = new HashMap<String, Object>();
+		cond.put("type", t);
+		
+		return mongoDao.findList(cond, fields,order, start, pageSize);
+	}
 
 	/**
 	 * 修改

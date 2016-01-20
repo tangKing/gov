@@ -1,10 +1,10 @@
 $(document).ready(function(){
-	query(1);
+	query(1,$("#paramId").val());
 }); 
 listUrl = server_duban_create_domain;
-function query(page) {//查询全部部门
+function query(page,paramId) {//查询全部部门
 	 var requestUrl=listUrl+"m=queryAll";
-	 var  data={"page":page,"pageSize":pageSize};
+	 var  data={"page":page,"pageSize":pageSize,"paramId":paramId};
 	 execAjax(requestUrl,data,findBack);
 }
 function findBack(json){
@@ -16,7 +16,7 @@ function findBack(json){
  				"<td height=\"30\" bgcolor=\"#FFFFFF\" width=\"14%\" class=\"STYLE19\">"+obj.zynr+"</td>" +
  				"<td height=\"30\" bgcolor=\"#FFFFFF\" width=\"16%\" class=\"STYLE19\">"+obj.wcqk+"</td>" +
  				"<td height=\"30\" bgcolor=\"#FFFFFF\" width=\"14%\" class=\"STYLE19\">"+obj.zgld+"</td>" +
- 				"<td height=\"30\" bgcolor=\"#FFFFFF\" width=\"14%\" class=\"STYLE19\">"+obj.cbdw+"</td>" +
+ 				"<td height=\"30\" bgcolor=\"#FFFFFF\" width=\"14%\" class=\"STYLE19\">"+obj.depName+"</td>" +
  				"<td height=\"30\" bgcolor=\"#FFFFFF\" width=\"13%\" class=\"STYLE19\">"+obj.cbr+"</td>" +
  				"</tr>");
  	});

@@ -24,8 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <body>
 <input type="hidden" id="editType" value="${param.type}"/>
+<input type="hidden" id="token" value="${token}"/>
 <div class="mod">
-<form name="form1" id="form1" method="post" action="">
+<form name="form2" id="form2" method="post" action="">
 <input type="hidden" id="createId" name="id" value="${param.id}"/>
   <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
@@ -65,7 +66,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	</tr>
    	<tr>
    		<td>承办单位</td>
-   		<td><input type="text" class="txtInput" name="cbdw" id="cbdw"/></td>
+   		<td><select style="float:left" name="cbdw" id="cbdw">
+   
+   		</select></td>
    	</tr>
    	<tr height="25">
    		<td>承办人</td>
@@ -92,6 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<td colspan="4" >
 		<input type="button" value="保存" onclick="add()"/><input type="button" value="取消"/></td>
 	</tr>
+	</table>
    </table>
    </form>
 </div>

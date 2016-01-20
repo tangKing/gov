@@ -24,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <body>
 <input type="hidden" id="editType" value="${param.type}"/>
+<input type="hidden" id="token" value="${token}"/>
+<input type="hidden" id="token" value="${token}"/>
 <div class="mod">
 <form name="form1" id="form1" method="post" action="">
 <input type="hidden" id="zhengfuId" name="id" value="${param.id}"/>

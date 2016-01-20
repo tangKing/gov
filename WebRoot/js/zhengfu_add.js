@@ -1,4 +1,4 @@
-$(document).ready(function(){
+ $(document).ready(function(){
 	showDes();
 });
 function add() {//查询全部部门

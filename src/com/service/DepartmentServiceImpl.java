@@ -53,6 +53,19 @@ public class DepartmentServiceImpl {
 		return result;
 	}
 	
+	public Map<String, String> queryAll() throws Exception{
+		Map<String, Object> order = new HashMap<String, Object>();
+		order.put("createtime", -1);// 最大的时间在最前面
+		
+		List<Map<String,Object>> deptList = mongoDao.findList(null, fields,order, 0, -1);
+		Map<String, String> deptMap = new HashMap<String,String>();
+		for(Map<String,Object> dept:deptList){
+			deptMap.put((String)dept.get("id"), (String)dept.get("depName"));
+		}
+		
+		return deptMap;
+	}
+	
 	/**
 	 * 查询列表
 	 */

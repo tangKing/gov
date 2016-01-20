@@ -9,6 +9,7 @@ import com.mongodb.ReadPreference;
 import com.util.PageModel;
 import com.zank.zcf.dao.mongo.IMongoDao;
 import com.zank.zcf.dao.mongo.factory.MongoDaoFactory;
+import com.zank.zcf.util.StringUtils;
 
 public class DubanCreateServiceImpl {
 
@@ -46,12 +47,16 @@ public class DubanCreateServiceImpl {
 	/**
 	 * 查询列表
 	 */
-	public PageModel<Map<String,Object>> queryAll(int page, int pageSize) throws Exception {
+	public PageModel<Map<String,Object>> queryAll(int page, int pageSize,String id) throws Exception {
 		Map<String, Object> order = new HashMap<String, Object>();
 		order.put("createtime", -1);// 最大的时间在最前面
 		int start = (page - 1) * pageSize;
 		
-		List<Map<String, Object>> list = mongoDao.findList(null,order, start, pageSize);
+		Map<String, Object> cond = new HashMap<String, Object>();
+		if(!StringUtils.isEmpty(id)){
+			cond.put("ssmk", id);
+		}
+		List<Map<String, Object>> list = mongoDao.findList(cond,order, start, pageSize);
 		PageModel<Map<String,Object>> model = new PageModel<Map<String,Object>>();
 		model.setList(list);
 		model.setPageNo(page);
@@ -61,6 +66,16 @@ public class DubanCreateServiceImpl {
 		model.setTotalRecords(count);
 		
 		return model;
+	}
+	
+	public List<Map<String, Object>> query(int start, String t) throws Exception{
+		Map<String, Object> order = new HashMap<String, Object>();
+		order.put("createtime", -1);
+		
+		Map<String,Object> cond = new HashMap<String, Object>();
+		cond.put("ssmk", t);
+		
+		return mongoDao.findList(cond, null,order, start, -1);
 	}
 
 	/**

@@ -147,7 +147,7 @@ a:hover {
             </tr>
           </table></td>
         </tr>
-		<tr>
+		<!-- <tr>
           <td height="38"><table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td width="33" height="28"><img src="../images/main/main_50.gif" width="28" height="28"></td>
@@ -170,7 +170,7 @@ a:hover {
               </table></td>
             </tr>
           </table></td>
-        </tr>
+        </tr> -->
         <tr>
           <td height="38">&nbsp;</td>
         </tr>

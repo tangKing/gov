@@ -11,6 +11,7 @@ import com.handler.LoginHandler;
 import com.handler.ParamHandler;
 import com.handler.TestHandler;
 import com.handler.UserHandler;
+import com.handler.WebIndexHandler;
 import com.handler.ZhengfuHandler;
 
 /**
@@ -44,6 +45,7 @@ public class BootstrapServer {
 		httpExecutor.registerRegexHandler("duban", new DubanHandler());
 		httpExecutor.registerRegexHandler("zhengfu", new ZhengfuHandler());
 		httpExecutor.registerRegexHandler("dbcreate", new DubanCreateHandler());
+		httpExecutor.registerRegexHandler("webIndex", new WebIndexHandler());
 
 		// 启动一个HTTP服务器，默认是netty
 //		try{

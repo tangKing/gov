@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <div class="mod">
 <input type="hidden" id="editType" value="${param.type}"/>
+<input type="hidden" id="token" value="${token}"/>
 <form name="form1" id="form1" method="post" action="">
   <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0">
   <input type="hidden" id="token" value="${token}"/>

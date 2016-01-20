@@ -24,7 +24,13 @@ body {
 .STYLE5 {font-size: 12}
 .STYLE7 {font-size: 12px; color: #FFFFFF; }
 -->
-</style></head>
+</style>
+<script type="text/javascript">
+	function show(){
+		alert("建设中，敬请期待");
+	}
+</script>
+</head>
 
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -56,14 +62,14 @@ body {
 		<a href="right.jsp" target="rightFrame">
 		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">督办系统</span>&nbsp;&nbsp;&nbsp;
 		</a>
-		<a href="../person/main.jsp" target="_blank">
-		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">个人办公</span></a>&nbsp;&nbsp;&nbsp;
-		<a href="../affair/main.jsp" target="_blank">
-		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">政务办公</span></a>&nbsp;&nbsp;&nbsp;
-		<a href="../assist/main.jsp" target="_blank">
-		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">辅助办公</span></a>&nbsp;&nbsp;&nbsp;
-		<a href="../common/main.jsp" target="_blank">
-		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">公共信息</span></a>&nbsp;&nbsp;&nbsp;
+		<a target="_blank">
+		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;" onclick="show()">个人办公</span></a>&nbsp;&nbsp;&nbsp;
+		<a target="_blank">
+		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;" onclick="show()">政务办公</span></a>&nbsp;&nbsp;&nbsp;
+		<a target="_blank">
+		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;" onclick="show()">辅助办公</span></a>&nbsp;&nbsp;&nbsp;
+		<a target="_blank">
+		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;" onclick="show()">公共信息</span></a>&nbsp;&nbsp;&nbsp;
 		<a href="../system/main.jsp" target="_blank">
 		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">系统设置</span>
 		</a>

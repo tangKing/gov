@@ -68,6 +68,7 @@ for(i=0;i<cs.length;i++){
 %>
 <body>
 <input type="hidden" id="depId" value="${dep_id}"/>
+<input type="hidden" id="token" value="${token}"/>
 <input type="hidden" id="role" value="${role}" />
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>

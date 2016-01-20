@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import com.cg.CommandCg;
 import com.cg.MultiCommandHandlerCg;
 import com.cg.ResponseCg;
+import com.service.DepartmentServiceImpl;
 import com.service.DubanCreateServiceImpl;
 import com.util.KeyUtil;
 import com.util.PageModel;
@@ -16,6 +17,7 @@ import com.zank.zcf.util.StringUtils;
 public class DubanCreateHandler extends MultiCommandHandlerCg {
 	private static Logger logger = Logger.getLogger(DubanCreateHandler.class);
 	private DubanCreateServiceImpl dubanCreateService = new DubanCreateServiceImpl();
+	private DepartmentServiceImpl deptService = new DepartmentServiceImpl();
 
 	/**
 	 * 添加
@@ -70,8 +72,14 @@ public class DubanCreateHandler extends MultiCommandHandlerCg {
 			if(cmd.hasParam("pageSize")){
 				pageSize = cmd.getIntParam("pageSize");
 			}
+			
+			String id = cmd.getStringParam("paramId");
 			logger.info("---queryAll-----param---cmd:" + cmd);
-			PageModel<Map<String, Object>> result = dubanCreateService.queryAll(page==0?1:page, pageSize);
+			PageModel<Map<String, Object>> result = dubanCreateService.queryAll(page==0?1:page, pageSize,id);
+			Map<String, String> deptMap = deptService.queryAll();// 查询全部的部门数据
+			for(Map<String,Object> map:result.getList()){
+				map.put("depName", deptMap.get(map.get("cbdw")));
+			}
 			ResponseCg response = new ResponseCg();
 			response.addValue("code", KeyUtil.CODE_SUCCESS);
 			response.addValue("result", result);

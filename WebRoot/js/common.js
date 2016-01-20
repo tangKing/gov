@@ -1,5 +1,5 @@
 var token= $("#token").val();
-var web_domain="http://127.0.0.1:8080/gov";//tomcat 访问地址
+var web_domain="http://127.0.0.1:8080/gov-git";//tomcat 访问地址
 var server_test_domain="http://127.0.0.1:7081/test?callback=?&token="+token+"&";//服务端访问地址
 var server_login_domain="http://127.0.0.1:7081/login?callback=?&token="+token+"&";//服务端访问地址
 var server_user_domain="http://127.0.0.1:7081/user?callback=?&token="+token+"&";//服务端访问地址
@@ -8,9 +8,10 @@ var server_param_domain="http://127.0.0.1:7081/param?callback=?&token="+token+"&
 var server_duban_domain="http://127.0.0.1:7081/duban?callback=?&token="+token+"&";//服务端访问地址
 var server_zhengfu_domain="http://127.0.0.1:7081/zhengfu?callback=?&token="+token+"&";//服务端访问地址
 var server_duban_create_domain="http://127.0.0.1:7081/dbcreate?callback=?&token="+token+"&";//服务端访问地址
+var server_webIndex_create_domain="http://127.0.0.1:7081/webIndex?callback=?&token="+token+"&";//服务端访问地址
 
 var listUrl = "";
-var pageSize = 5;
+var pageSize = 20;
 
 var dubanStatus = {"1":"未处理","2":"主管审核通过","3":"主管退回","4":"县长审核通过","5":"县长退回"};
 

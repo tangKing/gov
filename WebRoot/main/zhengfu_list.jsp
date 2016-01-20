@@ -60,7 +60,8 @@ for(i=0;i<cs.length;i++){
 }
 </script>
 
-<body>
+<body><input type="hidden" id="token" value="${token}"/>
+
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
