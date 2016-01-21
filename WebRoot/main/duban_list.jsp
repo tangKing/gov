@@ -2,7 +2,9 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+response.setHeader("P3P","CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'");
 %>
+<%@ page session='true' %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -67,9 +69,9 @@ for(i=0;i<cs.length;i++){
 	}
 %>
 <body>
-<input type="hidden" id="depId" value="${dep_id}"/>
-<input type="hidden" id="token" value="${token}"/>
-<input type="hidden" id="role" value="${role}" />
+<input type="hidden" id="depId" value="<%=request.getParameter("dep_id") %>"/>
+<input type="hidden" id="token" value="<%=request.getParameter("token") %>"/>
+<input type="hidden" id="role" value="<%=request.getParameter("role") %>" />
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">

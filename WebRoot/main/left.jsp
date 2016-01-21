@@ -2,6 +2,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+response.setHeader("P3P","CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'");
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,13 +26,15 @@ body {
 </style></head>
 <%
 	Object obj = request.getSession().getAttribute("role");
-	if(obj==null){
+	if(obj==null||obj.equals("")){
 		obj = request.getParameter("role");
 	}
 	int role = 0;
 	if(null != obj){
 		role = Integer.parseInt((String)obj);
 	}
+	String params="role="+request.getParameter("role")+"&dep_id="+request.getParameter("dep_id")+"&token="+request.getParameter("token");
+	request.getSession().setAttribute("params",params); 
 %>
 <body>
 <table width="147" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -39,7 +42,7 @@ body {
     <td height="23" background="../images/main/main_34.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="9%">&nbsp;</td>
-        <td width="83%"><div align="center" class="STYLE5">督办系统</div></td>
+        <td width="83%"><div align="center" class="STYLE5">督办系统1${role }</div></td>
         <td width="8%">&nbsp;</td>
       </tr>
     </table></td>
@@ -76,7 +79,7 @@ body {
               <td width="99"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td height="23" class="STYLE4" style="cursor:hand" onMouseOver="this.style.backgroundImage='url(../images/main/tab_bg.gif)';this.style.borderStyle='solid';this.style.borderWidth='1';borderColor='#adb9c2'; "onmouseout="this.style.backgroundImage='url()';this.style.borderStyle='none'">
-					<a href="duban_list.jsp" target="rightFrame" style="text-decoration:none;color:#000000;cursor:hand">
+					<a href="duban_list.jsp?${params}" target="rightFrame" style="text-decoration:none;color:#000000;cursor:hand">
 					查看通知单
 					</a>
 					</td>
