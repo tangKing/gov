@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <%
 	String type=request.getParameter("type");
-	Object obj = request.getSession().getAttribute("role");
+	Object obj = request.getParameter("role");
 	int role = 3;
 	if(null != obj){
 		role = Integer.parseInt((String)obj);

@@ -15,21 +15,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <%
 	String type=request.getParameter("type");
-	Object obj = request.getSession().getAttribute("role");
+	Object obj = request.getParameter("role");
 	int role = 3;
 	if(null != obj){
 		role = Integer.parseInt((String)obj);
 	}
+	
 %>
 <body>
 <div class="mod">
 <input type="hidden" id="editType" value="${param.type}"/>
-<input type="hidden" id="token" value="${token}"/>
+<input type="hidden" id="token" value="<%=request.getParameter("token") %>"/>
+
+
 <form name="form1" id="form1" method="post" action="">
+<input type="hidden" id="depId" value="<%=request.getParameter("depId") %>"/>
+<input type="hidden" id="dep_id" value="<%=request.getParameter("depId") %>"/>
+<input type="hidden" id="role" value="<%=request.getParameter("role") %>" />
+
   <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0">
   <input type="hidden" id="token" value="${token}"/>
-  <input type="hidden" id="dubanId" name="id" value="${param.id}"/>
-  <input type="hidden" name="dep_id" value="${dep_id}"/>
+  <input type="hidden" id="dubanId" name="dubanId" value="${param.id}"/>
     <tr>
       <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>

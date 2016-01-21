@@ -12,9 +12,13 @@ function add() {//查询全部部门
 	//alert("--11-2"+document.form1.action);
 	//document.getElementById("form1").submit();
 	$('#form1').ajaxSubmit(function(data) {  
-	    alert(data);//弹出ajax请求后的回调结果
+	    alert('添加成功');//弹出ajax请求后的回调结果
 	});
-	window.open("duban_list.jsp","_self","rightFrame");
+	 var depId=   $("#depId").val();
+	 var token=   $("#token").val();
+	 var role=   $("#role").val();
+	 var params="depId="+depId+"&token="+token+"&role="+role;
+	window.open("duban_list.jsp?"+params,"_self","rightFrame");
 }
 
 function showDes() {//查询全部部门

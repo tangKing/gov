@@ -62,14 +62,14 @@ for(i=0;i<cs.length;i++){
 }
 </script>
 <%
-	Object obj = request.getSession().getAttribute("role");
+	Object obj = request.getParameter("role");
 	int role = 0;
 	if(null != obj){
 		role = Integer.parseInt((String)obj);
 	}
 %>
 <body>
-<input type="hidden" id="depId" value="<%=request.getParameter("dep_id") %>"/>
+<input type="hidden" id="depId" value="<%=request.getParameter("depId") %>"/>
 <input type="hidden" id="token" value="<%=request.getParameter("token") %>"/>
 <input type="hidden" id="role" value="<%=request.getParameter("role") %>" />
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">

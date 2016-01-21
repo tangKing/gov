@@ -1,9 +1,13 @@
-var depId=$("#depId").val();//直接定义为本页的全局变量
-var role=$("#role").val();
+var depId=   $("#depId").val();
+var token=   $("#token").val();
+var role=   $("#role").val();
+var params="depId="+depId+"&token="+token+"&role="+role;
+
 $(document).ready(function(){
 	query(1);
 }); 
 listUrl = server_duban_domain;
+
 
 /**
  * 角色联合部门查询
@@ -48,7 +52,8 @@ function updateStatus(status){//修改状态，1通过，2退回
 		alert("一次只能操作一条数据");
 		return;
 	}
-	window.location.href = web_domain+"/main/duban_add.jsp?id="+$(ids[0]).val() +"&type="+status;
+	alert(params);
+	window.location.href = web_domain+"/main/duban_add.jsp?id="+$(ids[0]).val() +"&type="+status+"&"+params;
 }
 
 function show(){
@@ -64,7 +69,7 @@ function show(){
 		return;
 	}
 	
-	window.location.href = web_domain+"/main/duban_add.jsp?id="+$(ids[0]).val() +"&type=show";
+	window.location.href = web_domain+"/main/duban_add.jsp?id="+$(ids[0]).val() +"&type=show"+"&"+params;
 }
 
 function upd(id,status) {//查询全部部门

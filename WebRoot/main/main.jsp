@@ -27,7 +27,7 @@ request.getSession().setAttribute("dep_id",dId);
 request.getSession().setAttribute("role",role); 
 request.getSession().setAttribute("realName",rName); 
 
-String params="role="+request.getParameter("role")+"&dep_id="+request.getParameter("dId")+"&token="+request.getParameter("token");
+String params="role="+request.getParameter("role")+"&depId="+request.getParameter("dId")+"&token="+request.getParameter("token");
 request.getSession().setAttribute("params",params); 
 %>
 </head>
