@@ -15,27 +15,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <%
 	String type=request.getParameter("type");
-	Object obj = request.getParameter("role");
+	Object obj = request.getSession().getAttribute("role");
 	int role = 3;
 	if(null != obj){
 		role = Integer.parseInt((String)obj);
 	}
-	
 %>
 <body>
 <div class="mod">
 <input type="hidden" id="editType" value="${param.type}"/>
-<input type="hidden" id="token" value="<%=request.getParameter("token") %>"/>
-
-
+<input type="hidden" id="token" value="${token}"/>
 <form name="form1" id="form1" method="post" action="">
-<input type="hidden" id="depId" value="<%=request.getParameter("depId") %>"/>
-<input type="hidden" id="dep_id" value="<%=request.getParameter("depId") %>"/>
-<input type="hidden" id="role" value="<%=request.getParameter("role") %>" />
-
   <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0">
   <input type="hidden" id="token" value="${token}"/>
-  <input type="hidden" id="dubanId" name="dubanId" value="${param.id}"/>
+  <input type="hidden" id="dubanId" name="id" value="${param.id}"/>
+  <input type="hidden" name="dep_id" value="${dep_id}"/>
     <tr>
       <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -57,15 +51,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <table class="formTable">
    	<tr>
    		<td width="15%">督办类别</td>
-   		<td width="35%"><input type="text" id="type" name="type" class="txtInput"/></td>
+   		<td width="35%"><select id="type" name="type" class="txtInput" ></select></td>
    		<td width="15%">收件日期</td>
-   		<td width="35%"><input type="text" id="pickTime" name="pickTime" class="txtInput" onClick="WdatePicker()"/></td>
+   		<td width="35%"><input type="text" id="pickTime" name="pickTime" class="txtInput" onClick="WdatePicker()" readonly="readonly"/></td>
    	</tr>
    	<tr>
    		<td>发件部门</td>
-   		<td><input type="text" class="txtInput" name="sendDepart" id="sendDepart"/></td>
+   		<td><input type="hidden" class="txtInput" name="sendDepart" id="sendDepart" value="${dep_id}"/>
+   		<span style="float:left;padding-left:5px;font-size:12px;">${depName}</span>
+   		</td>
    		<td>承办单位</td>
-   		<td><input type="text" class="txtInput" name="takeDepart" id="takeDepart"/></td>
+   		<td><select name="takeDepart" id="takeDepart" class="txtInput" ></select></td>
    	</tr>
    	<tr height="60">
    		<td>督办内容<br/>概要</td>

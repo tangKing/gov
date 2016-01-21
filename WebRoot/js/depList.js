@@ -9,7 +9,7 @@ function add() {//登陆
 listUrl = server_dept_domain;
 
 function find() {//查询全部部门
-	query(1);
+	query(0);
 }
 
 function edit(){

@@ -41,7 +41,7 @@ function add() {//登陆
 }
 
 function find() {//查询全部部门
-	   $.getJSON(server_dept_domain+"m=queryAll&page=1&pageSize=2000", function(json){ 
+	   $.getJSON(server_dept_domain+"m=queryAll&page=0&pageSize=2000", function(json){ 
         var code = json.code;
         if(code!=200){
         	alert("数据初始化失败");

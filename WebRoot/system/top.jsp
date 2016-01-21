@@ -59,7 +59,7 @@ body {
       <tr>
         <td width="194" height="40" background="../images/main/main_07.gif">&nbsp;</td>
         <td>
-		<a href="right.html" target="rightFrame">
+		<a href="../main/main.jsp" target="_blank">
 		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">督办系统</span>&nbsp;&nbsp;&nbsp;
 		</a>
 		<a target="_blank">
@@ -70,7 +70,7 @@ body {
 		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;" onclick="show()">辅助办公</span></a>&nbsp;&nbsp;&nbsp;
 		<a target="_blank">
 		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;" onclick="show()">公共信息</span></a>&nbsp;&nbsp;&nbsp;
-		<a href="../system/main.html" target="_blank">
+		<a href="../system/main.jsp" target="_blank">
 		<span style="font-family:微软雅黑;font-size:16px;font-weight:normal;font-style:normal;text-decoration:none;color:#FFFFFF;">系统设置</span>
 		</a>
 		&nbsp;&nbsp;&nbsp;

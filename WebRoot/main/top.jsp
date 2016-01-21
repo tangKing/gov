@@ -1,3 +1,4 @@
+<%@page import="com.util.ToolUtil"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -79,7 +80,7 @@ body {
         <td width="248" background="../images/main/main_11.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="16%"><span class="STYLE5"></span></td>
-            <td width="75%"><div align="center"><span class="STYLE7">时间：2015-1-18 14:35:56</span></div></td>
+            <td width="75%"><div align="center"><span class="STYLE7">时间：2016-01-21</span></div></td>
             <td width="9%">&nbsp;</td>
           </tr>
         </table></td>
@@ -100,7 +101,31 @@ body {
         <td width="39"><img src="../images/main/main_30.gif" width="39" height="30" /></td>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td height="20" valign="bottom"><span class="STYLE1">当前登录用户：admin &nbsp;用户角色：管理员</span></td>
+            <td height="20" valign="bottom"><span class="STYLE1">当前登录用户：${username} &nbsp;用户角色：
+            <%
+            	Object role = request.getSession().getAttribute("role");
+            	if(role == null){
+            %>
+            	未知角色
+            <%
+            	}else{
+            		String r = (String)role;
+            		if(role.equals("3")){
+            			%>
+                        县长
+                        <%			
+            		}else if(role.equals("2")){
+            			%>
+                        部门主管
+                        <% 			
+            		}else{
+            			%>
+                   普通员工     
+                        <%			
+            		}
+            	}
+            %>
+            </span></td>
             <td valign="bottom" class="STYLE1"><div align="right"><img src="../images/main/sj.gif" width="6" height="7" /> IP：192.168.0.11       &nbsp; &nbsp;&nbsp;<img src="../images/main/sj.gif" width="6" height="7" /> &nbsp;<span style="font-size:14;color:red">提供商：嫩江政府办</span> &nbsp; &nbsp; <img src="../images/main/sj.gif" width="6" height="7" /> &nbsp;<span style="font-size:14;color:red">单位：嫩江嫩网行业政务事业部</span></div></td>
           </tr>
         </table></td>

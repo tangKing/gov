@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	findMk();
+	
 	findDept();
 	
 	showDes();
@@ -8,26 +9,24 @@ function add() {//查询全部部门
 	 //verificationToken($("#token").val());//严重token是否有效，无效则跳转到登录页
 	 /*
 	 *直接将表单提交
-	 **/	 alert("添加成功！");
+	 **/	 
 	var requestUrl=server_duban_create_domain+"m=add";
-//	document.form2.action=requestUrl;
-	 $('#form2').attr('action',requestUrl);
-	//   document.form2.submit();
-	// alert(document.form2.action);
-	$('#form2').ajaxSubmit(function(data) {  
-	  //  alert(data);//弹出ajax请求后的回调结果
-	});
+	document.form2.action=requestUrl;
+	   document.form2.submit();
+//	$('#form2').ajaxSubmit(function(data) {  
+//	    alert(data);//弹出ajax请求后的回调结果
+//	});
 	  
-	   window.location.href = web_domain+'/main/duban_showList.jsp'; 
+//	   window.location.href = web_domain+'/main/duban_showList.jsp'; 
 }
 function findMk(){
 	var requestUrl=server_param_domain+"m=queryAll";
-	var data={"type":"index","page":1,"pageSize":"1000"};
+	var data={"type":"index","page":0,"pageSize":"1000"};
 	execAjax(requestUrl,data,findMkcallBack);
 }
 
 function findDept() {//查询全部部门
-	  $.getJSON(server_dept_domain+"m=queryAll&page=1&pageSize=2000", function(json){ 
+	  $.getJSON(server_dept_domain+"m=queryAll&page=0&pageSize=2000", function(json){ 
      var code = json.code;
      if(code!=200){
      	alert("数据初始化失败");

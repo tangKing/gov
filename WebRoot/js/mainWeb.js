@@ -13,14 +13,14 @@ function showCallback(obj){
 		$("#paramId"+n).val(param.id);
 		$("#contentUL"+n+" li").remove();
 		$.each(param.content,function(k,c){
-			var status = c.spqk;
+			var status = c.status;
 			var tip="";
 			if(status == 3 || status == 5){
 				tip = "(退)";
 			}
 			$("#contentUL"+n).append("<li>"+
 	                "<span class=\"fr\">"+c.depName+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;"+c.time+"</span>"+
-	                "<a href=\"#\">"+c.dbxm+tip+"</a>"+
+	                "<a href=\"#\">"+c.outline+tip+"</a>"+
 	              "</li>");
 		});
 		
@@ -66,7 +66,7 @@ function showBack(i){
 
 function showmore(i){
 	var id=$("#paramId"+i).val();
-	window.location.href = web_domain+'/main/duban_showList.jsp?id='+id;
+	window.location.href = web_domain+'/main/duban_list.jsp?id='+id;
 }
 
 function showAll(){

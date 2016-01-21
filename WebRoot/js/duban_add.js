@@ -1,6 +1,40 @@
 $(document).ready(function(){
+	findMk();
+	
+	findDept();
+	
 	showDes();
 });
+
+function findMk(){
+	var requestUrl=server_param_domain+"m=queryAll";
+	var data={"type":"index","page":0,"pageSize":"1000"};
+	execAjax(requestUrl,data,findMkcallBack);
+}
+
+function findDept() {//查询全部部门
+	  $.getJSON(server_dept_domain+"m=queryAll&page=0&pageSize=2000", function(json){ 
+   var code = json.code;
+   if(code!=200){
+   	alert("数据初始化失败");
+   }else{
+   	$.each(json.result.list,function(n,obj){
+   		$("#takeDepart").append("<option value=\""+obj.id+"\">"+obj.depName+"</option>");
+   	});
+   }
+ });
+}
+
+function findMkcallBack(json){
+	if(json.code == 200){
+		$("#type").empty();
+		$.each(json.result.list,function(n,obj){
+	 		$("#type").append(
+	 				"<option value=\""+obj.id+"\">"+obj.paramName+"</option>"
+	 				);
+	 });
+	}
+}
 
 function add() {//查询全部部门
 	 //verificationToken($("#token").val());//严重token是否有效，无效则跳转到登录页
@@ -12,13 +46,9 @@ function add() {//查询全部部门
 	//alert("--11-2"+document.form1.action);
 	//document.getElementById("form1").submit();
 	$('#form1').ajaxSubmit(function(data) {  
-	    alert('添加成功');//弹出ajax请求后的回调结果
+	    alert(data);//弹出ajax请求后的回调结果
 	});
-	 var depId=   $("#depId").val();
-	 var token=   $("#token").val();
-	 var role=   $("#role").val();
-	 var params="depId="+depId+"&token="+token+"&role="+role;
-	window.open("duban_list.jsp?"+params,"_self","rightFrame");
+	window.open("duban_list.jsp?role="+"&depId="+"&token=","_self","rightFrame");
 }
 
 function showDes() {//查询全部部门
