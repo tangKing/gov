@@ -22,31 +22,27 @@ public class DubanHandler extends MultiCommandHandlerCg {
 	 * 添加
 	 */
 	public void add(CommandCg cmd) {
-		try
-	    {
-	      logger.info("---add-----DubanHandler---cmd:" + cmd);
-	      Map<String, Object> paramsMap = cmd.getParams();
-	      paramsMap.remove("token");
-	      paramsMap.remove("callback");
-	      if (StringUtils.isEmpty(cmd.getStringParam("id")))
-	      {
-	        paramsMap.put("id", UUID.randomUUID().toString());
-	        paramsMap.put("createtime", Long.valueOf(System.currentTimeMillis()));
-	        paramsMap.put("status", Integer.valueOf(1));
-	      }
-	      this.dubanService.save(paramsMap);
-	      logger.info("-add-----DubanHandler---paramsMap----" + paramsMap);
-
-	      
-	      ResponseCg response = new ResponseCg();
-	      response.addValue("code", Integer.valueOf(200));
-	      response.addValue("msg", "添加成功");
-	      cmd.setResponseCg(response);
-	    }
-	    catch (Exception ex)
-	    {
-	      ex.printStackTrace();
-	    }
+		try {
+			logger.info("---add-----DubanHandler---cmd:" + cmd);
+			Map<String, Object> paramsMap=cmd.getParams();
+			logger.info("-add-----DubanHandler---paramsMap----"+paramsMap);
+			paramsMap.remove("token");
+			paramsMap.remove("callback");
+			if(StringUtils.isEmpty(cmd.getStringParam("id"))){
+				paramsMap.put("id", UUID.randomUUID().toString());
+				paramsMap.put("createtime", System.currentTimeMillis());
+				paramsMap.put("status", 1);
+			}
+			
+			dubanService.save(paramsMap);
+			
+			ResponseCg response = new ResponseCg();
+			response.addValue("code", KeyUtil.CODE_SUCCESS);
+			response.addValue("msg", "添加成功");
+			cmd.setResponseCg(response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	/**
 	 * 修改状态
@@ -77,19 +73,23 @@ public class DubanHandler extends MultiCommandHandlerCg {
 			}
 			String depId=cmd.getStringParam("depId");
 			String role=cmd.getStringParam("role");
+			String paramId = cmd.getStringParam("paramId");
 			Map<String,Object> condition=new HashMap<String,Object>();
-//			if(depId.equals("-1")){
-//				condition.remove("dep_id");
-//			}else{
-//				condition.put("dep_id", depId);
-//			}
+			if(!StringUtils.isEmpty(depId) && !depId.equals("-1")){
+				condition.put("dep_id", depId);
+			}
+			
+			if(!StringUtils.isEmpty(paramId)){
+				condition.put("type", paramId);
+			}
+			
 			if(role.equals("2")||role.equals("3")){
 				int status = role.equals("2")?1:2;
 				condition.put("status", status);
 			}
 			
-			logger.info("---queryAll-----param---condition:" + condition);
-			PageModel<Map<String, Object>> result = dubanService.queryAll(condition,page, pageSize);
+			logger.info("---queryAll-----param---cmd:" + cmd);
+			PageModel<Map<String, Object>> result = dubanService.queryAll(condition,page==0?1:page, pageSize);
 			ResponseCg response = new ResponseCg();
 			response.addValue("code", KeyUtil.CODE_SUCCESS);
 			response.addValue("result", result);

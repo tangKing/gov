@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import com.ServerConfig;
 import com.mongodb.ReadPreference;
+import com.util.KeyUtil;
 import com.util.PageModel;
 import com.zank.zcf.dao.mongo.IMongoDao;
 import com.zank.zcf.dao.mongo.factory.MongoDaoFactory;
@@ -56,6 +57,16 @@ public class DubanServiceImpl {
 		Map<String, Object> result = mongoDao.findOne(cond);
 		return result;
 	}
+	
+	public List<Map<String, Object>> query(int start, String t) throws Exception{
+		Map<String, Object> order = new HashMap<String, Object>();
+		order.put("createtime", -1);
+		
+		Map<String,Object> cond = new HashMap<String, Object>();
+		cond.put("type", t);
+		
+		return mongoDao.findList(cond, null,order, start, -1);
+	}
 
 	/**
 	 * 查询列表
@@ -66,6 +77,26 @@ public class DubanServiceImpl {
 		int start = (page==0?1:page - 1) * pageSize;
 		
 		List<Map<String, Object>> list = mongoDao.findList(condition,order, start, pageSize);
+		
+		for(Map<String, Object> map:list){
+			String str = "未知部门";
+			if(map.containsKey("takeDepart") && !((String)map.get("takeDepart")).equals("-1")){
+				str = KeyUtil.deptMap.get(map.get("takeDepart"));
+			}
+			map.put("depName", str);
+			
+			str = "未知类别";
+			if(map.containsKey("type")){
+				str = (String)(KeyUtil.paramMap.get(map.get("type"))).get("paramName");
+			}
+			map.put("typeName", str);
+			
+			str = "未知部门";
+			if(map.containsKey("sendDepart") && !((String)map.get("sendDepart")).equals("-1")){
+				str = KeyUtil.deptMap.get(map.get("sendDepart"));
+			}
+			map.put("sendDepName",str);
+		}
 		PageModel<Map<String,Object>> model = new PageModel<Map<String,Object>>();
 		model.setList(list);
 		model.setPageNo(page);

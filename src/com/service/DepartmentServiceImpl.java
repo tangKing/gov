@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import com.ServerConfig;
 import com.mongodb.ReadPreference;
+import com.util.KeyUtil;
 import com.util.PageModel;
 import com.zank.zcf.dao.mongo.IMongoDao;
 import com.zank.zcf.dao.mongo.factory.MongoDaoFactory;
@@ -41,6 +42,8 @@ public class DepartmentServiceImpl {
 		// 第一个false代表不插入，如果是true那么就是说如果不存在的话就插入
 		// 第二个false代表修改一条数据即可，如果是true那么就是说修改多条
 		mongoDao.update(cond, record, true, false);
+		
+		KeyUtil.updateDeptCache();
 		return true;
 	}
 	/**
@@ -93,6 +96,7 @@ public class DepartmentServiceImpl {
 		// 第一个false代表不插入，如果是true那么就是说如果不存在的话就插入
 		// 第二个false代表修改一条数据即可，如果是true那么就是说修改多条
 		mongoDao.update(record, record, false, false);
+		KeyUtil.updateDeptCache();
 		return true;
 	}
 
@@ -106,6 +110,8 @@ public class DepartmentServiceImpl {
 			cond.put("id", id);
 			mongoDao.delete(cond);
 		}
+		
+		KeyUtil.updateDeptCache();
 		return true;
 	}
 }

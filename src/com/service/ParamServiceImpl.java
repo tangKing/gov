@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.ServerConfig;
 import com.mongodb.ReadPreference;
+import com.util.KeyUtil;
 import com.util.PageModel;
 import com.zank.zcf.dao.mongo.IMongoDao;
 import com.zank.zcf.dao.mongo.factory.MongoDaoFactory;
@@ -35,6 +36,8 @@ public class ParamServiceImpl {
 		// 第一个false代表不插入，如果是true那么就是说如果不存在的话就插入
 		// 第二个false代表修改一条数据即可，如果是true那么就是说修改多条
 		mongoDao.update(cond, record, true, false);
+		
+		KeyUtil.updateParamCache();
 		return true;
 	}
 	
@@ -46,6 +49,19 @@ public class ParamServiceImpl {
 		cond.put("id", id);
 		Map<String, Object> result = mongoDao.findOne(cond);
 		return result;
+	}
+	
+	public Map<String, Map<String,Object>> queryAll() throws Exception{
+		Map<String, Object> order = new HashMap<String, Object>();
+		order.put("createtime", -1);// 最大的时间在最前面
+		
+		List<Map<String,Object>> paramtList = mongoDao.findList(null, fields,order, 0, -1);
+		Map<String, Map<String,Object>> map = new HashMap<String,Map<String,Object>>();
+		for(Map<String,Object> param:paramtList){
+			map.put((String)param.get("id"), param);
+		}
+		
+		return map;
 	}
 	
 	/**
@@ -89,6 +105,8 @@ public class ParamServiceImpl {
 		// 第一个false代表不插入，如果是true那么就是说如果不存在的话就插入
 		// 第二个false代表修改一条数据即可，如果是true那么就是说修改多条
 		mongoDao.update(record, record, false, false);
+		
+		KeyUtil.updateParamCache();
 		return true;
 	}
 
@@ -102,6 +120,8 @@ public class ParamServiceImpl {
 			cond.put("id", id);
 			mongoDao.delete(cond);
 		}
+		
+		KeyUtil.updateParamCache();
 		return true;
 	}
 }

@@ -51,7 +51,7 @@ public class BootstrapServer {
 //		try{
 //		new HttpServer( config.getHttpServerPort(), httpExecutor).stop();
 //		}catch(Exception ex){}
-		new HttpServerCg(config.getHttpServerHost(),config.getHttpServerPort(), httpExecutor).start();
+		new HttpServerCg( config.getHttpServerHost(),config.getHttpServerPort(), httpExecutor).start();
 		System.out.println("service started!!!");
 	}
 	// 添加：http://127.0.0.1:7081/test?m=add&id=1
