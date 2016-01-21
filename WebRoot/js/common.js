@@ -1,5 +1,5 @@
 var token= $("#token").val();
-var web_domain="http://127.0.0.1:8080/gov-git";//tomcat 访问地址
+var web_domain="http://127.0.0.1:8080/gov";//tomcat 访问地址
 var server_test_domain="http://127.0.0.1:7081/test?callback=?&token="+token+"&";//服务端访问地址
 var server_login_domain="http://127.0.0.1:7081/login?callback=?&token="+token+"&";//服务端访问地址
 var server_user_domain="http://127.0.0.1:7081/user?callback=?&token="+token+"&";//服务端访问地址
@@ -30,6 +30,9 @@ function SelectAll() {
 }
 
 function pageDiv(pageModel){
+	if(pageModel.totalRecords > 0){
+		$("#pageTable").show();
+	}
 	$("#totalNum").text(pageModel.totalRecords);
 	$("#pageNo").text(pageModel.pageNo);
 	$("#pageSize").text(pageModel.totalPages);
