@@ -75,7 +75,11 @@ public class DubanHandler extends MultiCommandHandlerCg {
 			String depId=cmd.getStringParam("depId");
 			String role=cmd.getStringParam("role");
 			Map<String,Object> condition=new HashMap<String,Object>();
-			condition.put("dep_id", depId);
+			if(depId.equals("-1")){
+				condition.remove("dep_id");
+			}else{
+				condition.put("dep_id", depId);
+			}
 			if(role.equals("2")||role.equals("3")){
 				int status = role.equals("2")?1:2;
 				condition.put("status", status);
